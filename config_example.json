@@ -1,0 +1,7 @@
+{
+  "youtube_api_key": "",
+  "my_api_key": "",
+  "ipfs_node_address": "/ip4/127.0.0.1/tcp/5001",
+  "api_path": "/sync_api",
+  "server_port": 5000
+}

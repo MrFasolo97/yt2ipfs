@@ -10,6 +10,7 @@ import subprocess
 import os
 import shutil
 from waitress import serve
+import inspect
 
 IPFS_NODE_ADDR = ""
 PORT = -1
@@ -34,17 +35,23 @@ except KeyError:
     print("Invalid config.json file!")
     exit(-1)
 except json.decoder.JSONDecodeError as e:
-    print("Error loading config.json file,", e)
+    print("Error loading config.json file:")
+    print(e)
     exit(1)
 
 
 try:
     ipfs_client = ipfshttpclient.connect(IPFS_NODE_ADDR, session=True)
-except ipfshttpclient.exceptions.VersionMismatch:
+except ipfshttpclient.exceptions.VersionMismatch as e:
     print("Unable to connect to IPFS Daemon, wrong version!")
+    print("\n", "Path of the file to be modified:", inspect.getfile(ipfshttpclient)[0:-11]+"client"+os.sep+"__init__.py")
+    print("\n", "For reference see this:",
+           "https://github.com/ipfs-shipyard/py-ipfs-http-client/issues/296#issuecomment-905484061")
+    print("\n", e)
     exit(-1)
-except ipfshttpclient.exceptions.ConnectionError:
+except ipfshttpclient.exceptions.ConnectionError as e:
     print("Unable to connect to IPFS Daemon")
+    print(e)
     print("ADDRESS:", IPFS_NODE_ADDR)
     exit(-1)
 

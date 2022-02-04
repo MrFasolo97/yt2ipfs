@@ -44,9 +44,10 @@ try:
     ipfs_client = ipfshttpclient.connect(IPFS_NODE_ADDR, session=True)
 except ipfshttpclient.exceptions.VersionMismatch as e:
     print("Unable to connect to IPFS Daemon, wrong version!")
-    print("\n", "Path of the file to be modified:", inspect.getfile(ipfshttpclient)[0:-11]+"client"+os.sep+"__init__.py")
+    print("\n", "Path of the file to be modified:", inspect.getfile(ipfshttpclient)[0:-11] + "client" + os.sep +
+          "__init__.py")
     print("\n", "For reference see this:",
-           "https://github.com/ipfs-shipyard/py-ipfs-http-client/issues/296#issuecomment-905484061")
+          "https://github.com/ipfs-shipyard/py-ipfs-http-client/issues/296#issuecomment-905484061")
     print("\n", e)
     exit(-1)
 except ipfshttpclient.exceptions.ConnectionError as e:

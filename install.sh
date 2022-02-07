@@ -11,8 +11,9 @@ then
 fi
 
 sudo pip3 install -r requirements.txt
+sudo apt install youtube-dl
 
-if ! file config.json &> /dev/null
+if ! [[ -f config.json ]]
 then
   cp config_example.json config.json
   chmod 0600 config.json

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
+sudo apt update
 if ! command -v pip3 &> /dev/null
 then
-  sudo apt update
   sudo apt install python3-pip
 fi
 
@@ -10,8 +10,12 @@ then
   sudo apt install python3
 fi
 
+if ! command -v youtube-dl &> /dev/null
+then
+  sudo apt install youtube-dl
+fi
+
 sudo pip3 install -r requirements.txt
-sudo apt install youtube-dl
 
 if ! [[ -f config.json ]]
 then
